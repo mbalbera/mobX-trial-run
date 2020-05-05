@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useLocalStore, useObserver} from 'mobx-react'
+import MovieHeader from ''
+import MovieList from ''
+
+const StoreContext = React.createContext()
+
+const StoreProvider = ({children}) => {
+  const store = useLocalStore(()=>({
+    movies: ['Toy Story', 'Up', 'Monsters Inc.'],
+    addMovie : movie => {
+      store.movies.push(movie)
+    },
+    get MovieCount(){
+      return store.movies.length
+    }
+  }))
+  return (
+    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <StoreProvider>
+      <MovieHeader />
+      <MovieList />
+    </StoreProvider>
+    )
 }
 
 export default App;
