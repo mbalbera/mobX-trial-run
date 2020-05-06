@@ -1,20 +1,26 @@
-import React from 'react';
+import React from "react";
+import { StoreContext } from '../App'
 
 
-class AddMovie extends React.Component{
-    state = { newMovie: '' }
+function AddMovie() {
 
-    setMovie = (e) =>{
-        this.setState({newMovie:e.target.value})
-    }
-    render(){
-        return (
-            <form onSubmit={e=>e.preventDefault()}>
-                <label>Input Movie</label>
-                <input type='text' value={this.state.newMovie} onChange={(e)=>this.setMovie(e)}/>
-                <input type='submit' value='submit'/>
-            </form>
-        )
-    }
+    const [movie, setMovie] = React.useState('')
+    const store = React.useContext(StoreContext)
+
+    return (
+        <form onSubmit={e=>{
+            store.addMovie(movie)
+            setMovie('')
+            e.preventDefault()
+            }}
+        >
+            <label>Input Movie</label>
+            <br/>
+            <input type='text' value={movie} onChange={(e)=>setMovie(e.target.value)}/>
+            <br/>
+            <input type='submit' value='submit'/>
+        </form>
+    )
+
 }
 export default AddMovie

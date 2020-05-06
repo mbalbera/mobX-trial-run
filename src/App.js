@@ -1,7 +1,8 @@
 import React from 'react';
-import { useLocalStore, observer} from 'mobx-react'
+import { useLocalStore } from 'mobx-react'
 import MovieHeader from './components/MovieHeader'
 import MovieList from './components/MovieList'
+import AddMovie from './components/AddMovie'
 
 export const StoreContext = React.createContext()
 
@@ -25,6 +26,7 @@ function App() {
     <StoreProvider>
       <MovieHeader />
       <MovieList />
+      <AddMovie />
     </StoreProvider>
     )
 }
