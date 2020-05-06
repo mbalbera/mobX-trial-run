@@ -1,9 +1,9 @@
 import React from 'react';
-import { useLocalStore, useObserver} from 'mobx-react'
-import MovieHeader from '../components/MovieHeader'
-import MovieList from '../components/MovieList'
+import { useLocalStore, observer} from 'mobx-react'
+import MovieHeader from './components/MovieHeader'
+import MovieList from './components/MovieList'
 
-const StoreContext = React.createContext()
+export const StoreContext = React.createContext()
 
 const StoreProvider = ({children}) => {
   const store = useLocalStore(()=>({
@@ -11,7 +11,7 @@ const StoreProvider = ({children}) => {
     addMovie : movie => {
       store.movies.push(movie)
     },
-    get MovieCount(){
+    get movieCount(){
       return store.movies.length
     }
   }))
