@@ -8,7 +8,7 @@ export const StoreContext = React.createContext()
 
 const StoreProvider = ({children}) => {
   const store = useLocalStore(()=>({
-    movies: ['Toy Story', 'Up', 'Monsters Inc.'],
+    movies: [{ title: 'Toy Story', year: 1996 }, { title: 'Up', year: 2006 }, ],
     addMovie : movie => {
       store.movies.push(movie)
     },

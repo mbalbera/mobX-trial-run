@@ -8,7 +8,7 @@ function MovieList() {
     return useObserver(()=>(
         <ul>
             {store.movies.map(movie=>(
-                <li key={movie}>{movie}</li>
+                <li key={movie}>{`${movie.title} in ${movie.year}`}</li>
             ))}
         </ul>
     ))
