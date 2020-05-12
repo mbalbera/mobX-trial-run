@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import { StoreContext } from '../App'
 import { useObserver } from 'mobx-react'
+import MovieCard from './MovieCard'
+import { Card  } from "semantic-ui-react";
 
 
 function MovieList() {
     const store = useContext(StoreContext)
     return useObserver(()=>(
-        <ul>
+        <Card.Group columns='4'> 
             {store.movies.map(movie=>(
-                <li key={movie}>{`${movie.title} in ${movie.year}`}</li>
+                <MovieCard key={movie} title={movie.title} year={movie.year} img={movie.img} summary= {movie.summary}/>
             ))}
-        </ul>
+         </Card.Group> 
     ))
 }
 export default MovieList
